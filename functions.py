@@ -17,34 +17,9 @@ def fetched_query(query):
     c = conn.cursor()
     return c.execute(query).fetchall()
 
-def team_list():
-    '''returns a list of all teams in the database'''
-    teams = []
-    for row in fetched_query('select teamname from  unique_teams'):
-        teams.append(row[0])
-    return teams
-
-def total_wins(team, season):
-    '''takes in name of team  and season and spits out number of wins
-       in a season '''
-    away_wins = fetched_query("select count(season) from matches" 
-                              f" where (season = {season} and ftr = 'A' and AwayTeam = '{team}')")
-    home_wins = fetched_query("select count(season) from matches" 
-                              f" where (season = {season} and ftr = 'H' and HomeTeam = '{team}')")
-    return away_wins[0][0] + home_wins[0][0]
-
 def all_teams(season):
     foo = fetched_query(f"select distinct(HomeTeam) from Matches where season='{season}'")
     return [team[0] for team in foo]
-#     teams = team_list()
-#     foo = []
-#     for team in teams:
-#         try:
-#             foo.append([team, total_wins(team, season)])
-#         except:
-#             pass
-#     return [x[0] for x in foo if x[1] != 0]
-
 
 class team():
     def __init__(self, team_name, season):
