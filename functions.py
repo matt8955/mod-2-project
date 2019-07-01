@@ -53,9 +53,9 @@ class team():
 
 
     def get_result(self, match):
-        if self.team == match[1] and match[3] == 'H':
+        if self.team == match[1] and match[3] == 'H' or self.team == match[2] and match[3] == 'A':
             return 'win'
-        elif self.team == match[2] and match[3] == 'A':
+        elif self.team == match[2] and match[3] == 'H' or self.team == match[1] and match[3] == 'A':
             return 'loss'
         else:
             return 'draw'
