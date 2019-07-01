@@ -96,7 +96,7 @@ class weather_helper():
         self.long = longitude
     
     def is_rain(self,dates):
-        '''returns a dict of bools if raining in location on date'''
+        '''saves a dict of dates as keys and bools as value if it rained on the given date'''
         rain_dict = {}
         for date in dates:
             #format dates
@@ -110,6 +110,6 @@ class weather_helper():
                 rain_dict[date] = False
             else:
                 rain_dict[date] = True
-        return rain_dict
-    
+        with open('rain_dict.json', 'w') as q:
+            json.dump(q)
     
